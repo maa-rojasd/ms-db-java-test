@@ -14,6 +14,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.db.util.Constants;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -22,9 +24,6 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
-	private final String HEADER = "Authorization";
-	private final String PREFIX = "Bearer ";
-	private final String SECRET = "mySecretKey";
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
@@ -48,8 +47,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 	}	
 
 	private Claims validateToken(HttpServletRequest request) {
-		String jwtToken = request.getHeader(HEADER).replace(PREFIX, "");
-		return Jwts.parser().setSigningKey(SECRET.getBytes()).parseClaimsJws(jwtToken).getBody();
+		String jwtToken = request.getHeader(Constants.HEADER).replace(Constants.PREFIX, "");
+		return Jwts.parser().setSigningKey(Constants.SECRET.getBytes()).parseClaimsJws(jwtToken).getBody();
 	}
 
 	/**
@@ -68,8 +67,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 	}
 
 	private boolean checkJWTToken(HttpServletRequest request, HttpServletResponse res) {
-		String authenticationHeader = request.getHeader(HEADER);
-		if (authenticationHeader == null || !authenticationHeader.startsWith(PREFIX))
+		String authenticationHeader = request.getHeader(Constants.HEADER);
+		if (authenticationHeader == null || !authenticationHeader.startsWith(Constants.PREFIX))
 			return false;
 		return true;
 	}

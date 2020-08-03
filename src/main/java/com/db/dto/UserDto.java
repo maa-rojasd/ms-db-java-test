@@ -1,7 +1,6 @@
 package com.db.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;

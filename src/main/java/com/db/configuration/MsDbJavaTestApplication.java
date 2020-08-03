@@ -30,9 +30,10 @@ public class MsDbJavaTestApplication {
 			http.csrf().disable()
 				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/V1/UserToken").permitAll()
+				.antMatchers(HttpMethod.POST, "/V1/UserToken","/h2-console/" ).permitAll()
 				.anyRequest().authenticated();
+			
 		}
 	}
-
+	
 }

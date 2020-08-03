@@ -44,12 +44,11 @@ public class UserServiceImpl implements UserService{
 		UserModel userModel = UserModel.builder().build();
 		UserResponseDto userResponse = UserResponseDto.builder().build();
 		ResponseObject responseObject = null;
-		userModel = objectMapper.userDtoToModel(userDto);
-		userModel.setToken(token);
-		
+		userModel = objectMapper.userDtoToModel(userDto, token);		
+		log.info(userModel.getPhones().get(0).getCityCode().toString());
 		try {
 			if (userRepository.existsByEmail(userModel.getEmail())) {
-				responseObject = ResponseObject.builder().status("500").message("El correo ya registrado").data(userResponse).build();
+				responseObject = ResponseObject.builder().status("500").message("El correo ya registrado").data("").build();
 				return new ResponseEntity<>(responseObject, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			
@@ -73,7 +72,7 @@ public class UserServiceImpl implements UserService{
 		log.info("UserService: LoginUser");
 		ResponseObject responseObject = null;
 		try {
-			if(!userRepository.findByEmailAndPassword(userDto.getEmail(), userDto.getPassword())) {
+			if(!userRepository.existsByEmailAndPassword(userDto.getEmail(), userDto.getPassword())) {
 				responseObject = ResponseObject.builder().status("500").message("Login fallido usuario o password invalido").data("").build();
 				return new ResponseEntity<>(responseObject, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
@@ -89,9 +88,26 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public ResponseEntity<ResponseObject> updateUser(UserRegistrationDto userDto) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<ResponseObject> updateUser(UserRegistrationDto userDto, String token) {
+		log.info("UserService: updateUser");
+		UserModel userModel = UserModel.builder().build();
+		UserResponseDto userResponse = UserResponseDto.builder().build();
+		ResponseObject responseObject = null;
+
+		try {
+			userModel = userRepository.findByEmail(userDto.getEmail());
+			userModel = objectMapper.userDtoToModelUpdate(userDto, token , userModel);
+			userRepository.save(userModel);
+			userResponse.setUser(userModel);
+			userResponse.setUuid(UUID.randomUUID());
+			responseObject = ResponseObject.builder().status("200").message("Guardado exitoso").data(userResponse).build();
+			return new ResponseEntity<>(responseObject, HttpStatus.OK);
+		} catch (Exception e) {
+			log.error("UserService: createUser Error");
+			log.error(e.getMessage());
+			responseObject = ResponseObject.builder().status("500").message("Guardado fallido").data("d").build();
+			return new ResponseEntity<>(responseObject, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	@Override
 	public String getJWTToken(String mail) {
@@ -114,5 +130,6 @@ public class UserServiceImpl implements UserService{
 		log.info(token);
 		return "Bearer " + token;
 	}
+
 
 }
