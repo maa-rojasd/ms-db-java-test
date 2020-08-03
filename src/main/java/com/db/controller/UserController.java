@@ -63,7 +63,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value ="/UserToken", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public UserTokenDto login(@RequestBody @Valid UserDto userDto) {
+	public UserTokenDto loginJwt(@RequestBody @Valid UserDto userDto) {
 		log.info("POST: Login: {}", userDto.getEmail());
 		String token = userService.getJWTToken(userDto.getEmail());
 		UserTokenDto user = UserTokenDto.builder().build();

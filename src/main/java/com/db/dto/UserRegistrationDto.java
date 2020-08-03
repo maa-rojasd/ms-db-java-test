@@ -14,6 +14,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * This is a dto class to hold user registration information
+ *
+ * @see java.lang.Object
+ * @author Marcelo Rojas
+ */
 @Getter
 @Setter
 public class UserRegistrationDto extends UserDto {
@@ -22,15 +28,23 @@ public class UserRegistrationDto extends UserDto {
 	 */
 	private static final long serialVersionUID = 6603576309432444760L;
 	
+	/**
+	 * Name of user
+	 */
 	@JsonProperty(value = "name", index = 1)
 	@NotBlank
 	@NotEmpty(message = "type cannot be empty")
 	@Size(min = 3, max = 30, message = "type Must be between 3 and 30 characters")
 	@Pattern(regexp = PatternConstants.ONLY_LETTERS, message = "type must only contain letters")
 	private String name;
+	
+	/**
+	 * List Phones of user
+	 */
 	@JsonProperty(value = "phones", index = 4)
 	@NotEmpty(message = "type cannot be empty")
 	private List<PhoneDto> phones;
+	
 	
 	@Builder
 	public UserRegistrationDto(String email, String password, String name, List<PhoneDto> phones) {

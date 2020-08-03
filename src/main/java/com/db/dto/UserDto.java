@@ -15,6 +15,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * This is a dto class to hold user information
+ *
+ * @see java.lang.Object
+ * @author Marcelo Rojas
+ */
 @Getter
 @Setter
 @Builder
@@ -25,12 +31,19 @@ public class UserDto implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6603576309432444760L;
+	
+	/**
+	 * Email of user
+	 */
 	@JsonProperty(value="email",index=2)
 	@NotEmpty(message = "type cannot be empty")
     @Size(min=8, max=30, message = "type Must be between 8 and 30 characters")
     @Pattern(regexp = PatternConstants.MAIL_VALID , message = "type must only contain letters and numbers")
 	private String email;
 	
+	/**
+	 * Password of user
+	 */
 	@JsonProperty(value="password",index=3)
 	@NotEmpty(message = "type cannot be empty")
     @Size(min=8, max=30, message = "type Must be between 8 and 30 characters")
