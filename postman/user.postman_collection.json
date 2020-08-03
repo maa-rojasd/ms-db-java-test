@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "c542106b-7158-4cd6-8182-737009a773a8",
+		"name": "user",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/V1/Registro",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoianVhbkByb2RyaWd1ZXoub3JnIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTU5NjQzNjc0OSwiZXhwIjoxNTk2NDM3MzQ5fQ.BScioYteeCFsVp8mdmpBL3JF6W0FzQ3m7OocB9HQBbza7-3f5_6luNc1i4eY2aRuFBy0E6OURo8AiM0UmmX_oQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Juan Rodriguez\",\n    \"email\": \"juan@rodriguez.org\",\n    \"password\": \"Huntder223\",\n    \"phones\": [\n        {\n            \"number\": \"1234567\",\n            \"citycode\": \"1\",\n            \"contrycode\": \"57\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/V1/Registro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"V1",
+						"Registro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/V1/UpdateRegistro",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoianVhbkByb2RyaWd1ZXoub3JnIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTU5NjQzNjc0OSwiZXhwIjoxNTk2NDM3MzQ5fQ.BScioYteeCFsVp8mdmpBL3JF6W0FzQ3m7OocB9HQBbza7-3f5_6luNc1i4eY2aRuFBy0E6OURo8AiM0UmmX_oQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Juan Rodriguez\",\n    \"email\": \"juan@rodriguez.org\",\n    \"password\": \"Huntder223\",\n    \"phones\": [\n        {\n            \"number\": \"1234567\",\n            \"citycode\": \"1\",\n            \"contrycode\": \"57\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/V1/UpdateRegistro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"V1",
+						"UpdateRegistro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/V1/Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoianVhbkByb2RyaWd1ZXoub3JnIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTU5NjQyNTA4NCwiZXhwIjoxNTk2NDI1Njg0fQ.6_PHkzQu8Q-rolxhEjDarEMwr98_pMPtGLZPiVS4yI1hNdrKhf8rLyCLGMKx60rWQEcvkt8fkpqLfEjQIuyDPw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"juan@rodriguez.org\",\n    \"password\": \"Huntder22\"\n   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/V1/Login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"V1",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/V1/UserToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"juan@rodriguez.org\",\n    \"password\": \"Huuntere22\"\n   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001/V1/UserToken",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"V1",
+						"UserToken"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
